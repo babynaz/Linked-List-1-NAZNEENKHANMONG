@@ -1,50 +1,39 @@
-#ifndef NODE_H
-#define NODE_H
-
 #include <iostream>
+#include <string>
+#include <iomanip>
+using namespace std;
 
-class Node {
+class node{
 private:
-    int value;
-    Node* nextPtr = nullptr;
-    Node* prevPtr = nullptr;
+    int id;
+	  string name; 
+    node* next;
+ public:
 
-public:
-    Node(int = 0);
-    ~Node();
-    Node* getPrev();
-    Node* getNext();
-    int getData();
-    void setPrev(Node*);
-    void setNext(Node*);
+    node(int,string);
+    void print();
+    node* get_next(){return next;}
+    void set_next(node*);
+    string get_name() {return name;}
+    int get_id() {return id;}
+    ~node() {cout<<name<<" deleted\n";}
+
 };
 
-Node::Node(int value) {
-    this->value = value;
+typedef node* nodePtr;
+
+void node :: print(){
+  
+  cout<<"ID : "<<id<<" Name : "<<name<<"\n";
 }
 
-Node::~Node() {
-    std::cout << this->value << " deleted" << std::endl;
+node :: node(int inp_id, string inp_name){
+  
+  id = inp_id;
+  name = inp_name;
 }
 
-Node* Node::getPrev() {
-    return this->prevPtr;
+void node :: set_next(node* inp_next){
+  
+  next = inp_next;
 }
-
-Node* Node::getNext() {
-    return this->nextPtr;
-}
-
-int Node::getData() {
-    return this->value;
-}
-
-void Node::setPrev(Node* prev) {
-    this->prevPtr = prev;
-}
-
-void Node::setNext(Node* next) {
-    this->nextPtr = next;
-}
-
-#endif
